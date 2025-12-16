@@ -72,9 +72,9 @@ else:
             threshold_img,
             cv2.MORPH_CLOSE,
             kernel,
-            interations = 2
+            iterations = 2
         )
-        
+
         #Contour config
         contour, _ = cv2.findContours(
             clean2,
