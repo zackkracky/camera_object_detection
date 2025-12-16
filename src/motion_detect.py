@@ -52,14 +52,14 @@ else:
             threshold_img,
             cv2.MORPH_OPEN,
             kernel,
-            iteration = 1
+            iterations = 1
         )
 
         clean2 = cv2.morphologyEx(
             clean1,
             cv2.MORPH_DILATE,
             kernel,
-            iteration =1 
+            iterations =1 
         )
 
         cv2.imshow("background Mask",threshold_img)
