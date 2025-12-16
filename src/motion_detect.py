@@ -48,7 +48,7 @@ else:
         #Kernel tool config(remember kernel is a tool cant make any changes on its own)
         kernel =  cv2.getStructuringElement(
             cv2.MORPH_ELLIPSE,
-            (2,2)
+            (3,3)
         )
 
         #Morphology config
@@ -74,7 +74,7 @@ else:
         )
 
         #minimum area of pixels for it to be considered as an object
-        Minimum_area = 8000
+        Minimum_area = 12000
 
         for c  in contour:
             area = cv2.contourArea(c)
