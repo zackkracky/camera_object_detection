@@ -100,7 +100,7 @@ else:
 
             cv2.circle(
                 frame,
-                (cx,cy),
+                (centre_x,centre_y),
                 4,
                 (0,0,255),
                 -1
