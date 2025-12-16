@@ -6,7 +6,7 @@ if not cap.isOpened():
     print("error in launching cam")
     raise SystemExit
 else:
-    prints("sucess")
+    print("sucess")
     
     while True:
         status , frame = cap.read()
