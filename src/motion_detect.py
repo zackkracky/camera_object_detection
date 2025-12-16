@@ -74,10 +74,17 @@ else:
             kernel,
             iterations = 2
         )
+        
+        clean4 = cv2.morphologyEx(
+            clean3,
+            cv2.MORPH_ERODE,
+            kernel,
+            iteration = 2
+        )
 
         #Contour config
         contour, _ = cv2.findContours(
-            clean3,
+            clean4,
             cv2.RETR_EXTERNAL,
             cv2.CHAIN_APPROX_SIMPLE
         )
