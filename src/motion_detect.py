@@ -26,7 +26,11 @@ else:
     while True:
     
         status, frame = cap.read()
-
+        
+        frame = cv2.flip(frame, 1)
+        #0 for vertical mirror and -1 for both horrizontal and veritcal mirror
+        
+        
         if not status:
             continue
         
@@ -72,7 +76,5 @@ else:
             break
 
 
-
-
 cap.release()
-cv2.destroyAllWinodws()
+cv2.destroyAllWindows()
