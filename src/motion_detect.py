@@ -68,7 +68,7 @@ else:
 
         #Contour config
         contour, _ = cv2.findContours(
-            clean2
+            clean2,
             cv2.RETR_EXTERNAL,
             cv2.CHAIN_APPROX_SIMPLE
         )
@@ -104,8 +104,9 @@ else:
                 4,
                 (0,0,255),
                 -1
-            )
 
+            )
+            
 
         cv2.imshow("background Mask",threshold_img)
         cv2.imshow("Post Morphology",clean2)
