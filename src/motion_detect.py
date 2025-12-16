@@ -33,7 +33,7 @@ else:
         
         if not status:
             continue
-        
+            
         Mask_img = backsub.apply(frame)
         
         #threshold config for Mask
@@ -48,7 +48,7 @@ else:
         #Kernel tool config(remember kernel is a tool cant make any changes on its own)
         kernel =  cv2.getStructuringElement(
             cv2.MORPH_ELLIPSE,
-            (3,3)
+            (5,5)
         )
 
         #Morphology config
@@ -63,7 +63,7 @@ else:
             clean1,
             cv2.MORPH_DILATE,
             kernel,
-            iterations =1 
+            iterations =2 
         )
 
         #Contour config
