@@ -2,6 +2,7 @@ import cv2
 import time
 
 
+
 cap = cv2.VideoCapture(0,cv2.CAP_V4L2)
 
 cap.set(cv2.CAP_PROP_FRAME_WIDTH,720)
@@ -31,15 +32,38 @@ else:
         
         Mask_img = backsub.apply(frame)
         
+        #threshold config for Mask
         _, threshold_img = cv2.threshold(
             Mask_img,
-            252,
+            250,#choose either 250 or 252
             255,
             cv2.THRESH_BINARY
         )
 
-        cv2.imshow("background Mask",threshold_img)
 
+        #Kernel tool config(remember kernel is a tool cant make any changes on its own)
+        kernel =  cv2.getStructureElement(
+            cv2.MORPH_ELEMENT,
+            (3,3)
+        )
+
+        #Morphology config
+        clean1 = cv2.morphologyEx(
+            threshold_img,
+            cv2.MORPH_OPEN,
+            kernel,
+            iteration = 1
+        )
+
+        clean2 = cv2.morphologyEx(
+            clean1,
+            cv2.MORPH_DILATE,
+            kernel,
+            iteration =1 
+        )
+
+        cv2.imshow("background Mask",threshold_img)
+        cv2.imshow("Post Morphology",clean2)
         cv2.imshow("live",frame)
 
         
@@ -51,4 +75,4 @@ else:
 
 
 cap.release()
-cv2.detroyAllWinodws()
+cv2.destroyAllWinodws()
