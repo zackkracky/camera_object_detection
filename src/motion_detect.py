@@ -1,0 +1,46 @@
+import cv2
+import time
+
+
+cap = cv2.VideoCapture(0,cv2.CAP_V4L2)
+
+cap.set(cv2.CAP_PROP_FRAME_WIDTH,720)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1280)
+time.sleep(0.5)
+
+if not cap.isOpened():
+    print("error")
+else:
+    print("Video Live")
+
+    #Background Subtractor config:
+    backsub = cv2.creatBackgroundSubtractorMOG2(
+
+        history = 500,
+        varthreshold = 25,
+        detectShadow = True
+
+    )
+
+    while True:
+    
+        status, frame = cap.read()
+
+        if not status:
+            continue
+        
+        Motion_mask = backsub(frame)
+        cv2.imshow("background Mask",Motion_mask)
+
+        cv2.imshow("live",frame)
+
+        
+
+        if waitKey(1) & 0xFF == ord('q'):
+            break
+
+
+
+
+cap.release()
+cv2.detroyAllWinodws()
