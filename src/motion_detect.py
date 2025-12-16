@@ -84,7 +84,7 @@ else:
 
 
             #Bounded region of object    
-            x,y,w,h = cv2.boundRect(c)
+            x,y,w,h = cv2.boundingRect(c)
             
             #Centre
             centre_x = x + (w//2)
