@@ -42,7 +42,7 @@ else:
 
 
         #Kernel tool config(remember kernel is a tool cant make any changes on its own)
-        kernel =  cv2.getStructureElement(
+        kernel =  cv2.getStructuringElement(
             cv2.MORPH_ELEMENT,
             (3,3)
         )
