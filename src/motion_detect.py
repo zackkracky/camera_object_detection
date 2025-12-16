@@ -34,7 +34,7 @@ else:
         if not status:
             continue
             
-        Mask_img = backsub.apply(frame)
+        Mask_img = backsub.apply(frame, learningRate = 0)#if rate is zero then it basically just detects the motion no more learning
         
         #threshold config for Mask
         _, threshold_img = cv2.threshold(
@@ -48,10 +48,11 @@ else:
         #Kernel tool config(remember kernel is a tool cant make any changes on its own)
         kernel =  cv2.getStructuringElement(
             cv2.MORPH_ELLIPSE,
-            (3,3)
+            (9,9)
         )
 
         #Morphology config
+        '''
         clean1 = cv2.morphologyEx(
             threshold_img,
             cv2.MORPH_OPEN,
@@ -65,7 +66,15 @@ else:
             kernel,
             iterations =2 
         )
+        '''
 
+        clean2 =  cv2.morphologyEx(
+            threshold_img,
+            cv2.MORPH_CLOSE,
+            kernel,
+            interations = 2
+        )
+        
         #Contour config
         contour, _ = cv2.findContours(
             clean2,
@@ -74,7 +83,7 @@ else:
         )
 
         #minimum area of pixels for it to be considered as an object
-        Minimum_area = 12000
+        Minimum_area = 8000
 
         for c  in contour:
             area = cv2.contourArea(c)
