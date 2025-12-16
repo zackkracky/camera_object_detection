@@ -29,14 +29,22 @@ else:
         if not status:
             continue
         
-        fg_mask = backsub.apply(frame)
-        cv2.imshow("background Mask",fg_mask)
+        Mask_img = backsub.apply(frame)
+        
+        _, threshold_img = cv2.threshold(
+            Mask_img,
+            250,
+            255,
+            cv2.THRESH_BINARY
+        )
+
+        cv2.imshow("background Mask",threshold_img)
 
         cv2.imshow("live",frame)
 
         
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.     waitKey(1) & 0xFF == ord('q'):
             break
 
 
