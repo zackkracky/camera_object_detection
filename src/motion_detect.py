@@ -48,7 +48,7 @@ else:
         #Kernel tool config(remember kernel is a tool cant make any changes on its own)
         kernel =  cv2.getStructuringElement(
             cv2.MORPH_ELLIPSE,
-            (5,5)
+            (2,2)
         )
 
         #Morphology config
