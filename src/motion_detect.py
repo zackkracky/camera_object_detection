@@ -53,38 +53,39 @@ else:
 
         #Morphology config
         
-        clean1 = cv2.morphologyEx(
+        clean = cv2.morphologyEx(
             threshold_img,
             cv2.MORPH_OPEN,
             kernel,
             iterations = 1
         )
 
-        clean2 = cv2.morphologyEx(
-            clean1,
+        clean1 = cv2.morphologyEx(
+            clean,
             cv2.MORPH_DILATE,
             kernel,
             iterations =2 
         )
         
 
-        clean3 =  cv2.morphologyEx(
-            clean2,
+        clean2 =  cv2.morphologyEx(
+            clean1,
             cv2.MORPH_CLOSE,
             kernel,
             iterations = 2
         )
-        
-        clean4 = cv2.morphologyEx(
-            clean3,
-            cv2.MORPH_ERODE,
+
+        clean3 = cv2.morphologyEx(
+            clean2,
+            cv2.MORPH_DILATE,
             kernel,
-            iterations = 2
+            iterations =2 
         )
+        
 
         #Contour config
         contour, _ = cv2.findContours(
-            clean4,
+            clean3,
             cv2.RETR_EXTERNAL,
             cv2.CHAIN_APPROX_SIMPLE
         )
