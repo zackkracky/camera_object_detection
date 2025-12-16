@@ -66,6 +66,47 @@ else:
             iterations =1 
         )
 
+        #Contour config
+        contour, _ = cv2.findContours(
+            clean2
+            cv2.RETR_EXTERNAL,
+            cv2.CHAIN_APPROX_SIMPLE
+        )
+
+        #minimum area of pixels for it to be considered as an object
+        Minimum_area = 800
+
+        for c  in contour:
+            area = cv2.contourArea(c)
+
+            if area > Minimum_area:
+                continue
+
+
+            #Bounded region of object    
+            x,y,w,h = cv2.boundRect(c)
+            
+            #Centre
+            centre_x = x + (w//2)
+            centre_y = y + (h//2)
+
+            cv2.rectangle(
+                frame,
+                (x,y),
+                (x+w,y+h),
+                (0,255,0)
+                2
+            )
+
+            cv2.circle(
+                frame,
+                (cx,cy),
+                4,
+                (0,0,255),
+                -1
+            )
+
+
         cv2.imshow("background Mask",threshold_img)
         cv2.imshow("Post Morphology",clean2)
         cv2.imshow("live",frame)
