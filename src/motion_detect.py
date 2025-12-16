@@ -18,7 +18,7 @@ else:
     backsub = cv2.createBackgroundSubtractorMOG2(
 
         history = 500,
-        varThreshold = 50,
+        varThreshold = 25,
         detectShadows = True
 
     )
