@@ -16,7 +16,7 @@ else:
 
         cv2.imshow("live",frame)
 
-        if waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 cv2.release()
 cv2.destroyAllWindows()
