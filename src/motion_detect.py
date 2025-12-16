@@ -79,7 +79,7 @@ else:
             clean3,
             cv2.MORPH_ERODE,
             kernel,
-            iteration = 2
+            iterations = 2
         )
 
         #Contour config
