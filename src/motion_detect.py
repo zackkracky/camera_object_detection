@@ -29,8 +29,8 @@ else:
         if not status:
             continue
         
-        Motion_mask = backsub(frame)
-        cv2.imshow("background Mask",Motion_mask)
+        fg_mask = backsub.apply(frame)
+        cv2.imshow("background Mask",fg_mask)
 
         cv2.imshow("live",frame)
 
