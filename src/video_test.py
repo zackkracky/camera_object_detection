@@ -4,7 +4,7 @@ cap = cv2.VideoCapture(0,cv2.CAP_V4L2)
 
 if not cap.isOpened():
     print("error in launching cam")
-    rasie SystemExit
+    raise SystemExit
 else:
     prints("sucess")
     
