@@ -33,7 +33,7 @@ else:
         
         _, threshold_img = cv2.threshold(
             Mask_img,
-            250,
+            252,
             255,
             cv2.THRESH_BINARY
         )
