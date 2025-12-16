@@ -14,7 +14,7 @@ else:
     print("Video Live")
 
     #Background Subtractor config:
-    backsub = cv2.creatBackgroundSubtractorMOG2(
+    backsub = cv2.createBackgroundSubtractorMOG2(
 
         history = 500,
         varthreshold = 25,
