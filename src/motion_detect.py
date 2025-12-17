@@ -34,7 +34,7 @@ else:
         if not status:
             continue
             
-        Mask_img = backsub.apply(frame, learningRate = 0.0001)#if rate is zero then it basically just detects the motion no more learning
+        Mask_img = backsub.apply(frame, learningRate = 0.001)#if rate is zero then it basically just detects the motion no more learning
         
         #threshold config for Mask
         _, threshold_img = cv2.threshold(
