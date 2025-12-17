@@ -5,8 +5,8 @@ import time
 
 cap = cv2.VideoCapture(0,cv2.CAP_V4L2)
 
-cap.set(cv2.CAP_PROP_FRAME_WIDTH,720)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1280)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH,1280)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT,720)
 time.sleep(0.5)
 
 if not cap.isOpened():
@@ -48,7 +48,7 @@ else:
         #Kernel tool config(remember kernel is a tool cant make any changes on its own)
         kernel =  cv2.getStructuringElement(
             cv2.MORPH_ELLIPSE,
-            (9,9)
+            (5,5)
         )
 
         #Morphology config
@@ -91,12 +91,12 @@ else:
         )
 
         #minimum area of pixels for it to be considered as an object
-        Minimum_area = 8000
+        Minimum_area = 800
 
         for c  in contour:
             area = cv2.contourArea(c)
 
-            if area > Minimum_area:
+            if area < Minimum_area:
                 continue
 
 
@@ -131,7 +131,7 @@ else:
 
         
 
-        if cv2.     waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
 
