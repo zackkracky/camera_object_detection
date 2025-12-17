@@ -35,7 +35,7 @@ else:
             continue
             
         Mask_img = backsub.apply(frame, learningRate = 0.001)#if rate is zero then it basically just detects the motion no more learning
-        
+        #current prefered rate = 0.001 in dim lit room(or almost dark room)
         #threshold config for Mask
         _, threshold_img = cv2.threshold(
             Mask_img,
