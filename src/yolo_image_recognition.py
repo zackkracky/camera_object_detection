@@ -103,7 +103,7 @@ for output in output_by_layer:
             BL_x = int(centre_x - det_width/2)
             BL_y = int(centre_y - det_height/2)
 
-            boxes.append[BL_x,BL_y,det_width,det_height]
+            boxes.append([BL_x,BL_y,det_width,det_height])
             confidence.append(float(class_confidence))
             class_id_list.append(class_id_index)
 
