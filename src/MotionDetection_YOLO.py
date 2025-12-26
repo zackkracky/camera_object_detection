@@ -27,7 +27,6 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
 time.sleep(0.5)
 #smaller resolution so less computation
 
-print(classes)
 
 if not cap.isOpened():
     print("camera crashed")
@@ -110,7 +109,7 @@ while True:
     Min_Area = 1500
 
     for c in contour:
-        if cv2.ContourArea(c) > Min_Area:
+        if cv2.contourArea(c) > Min_Area:
             motion_detection_status = True
             break
     #===========CONDITIONAL YOLO==============
