@@ -43,7 +43,7 @@ while True:
     height, width = frame.shape[:2]
 
     #blob formating:
-    blob = cv2.dnn.blobfromImage(
+    blob = cv2.dnn.blobFromImage(
         frame,
         scalefactor = 1/255.0,
         size = (416,416),
@@ -119,3 +119,4 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
+#
