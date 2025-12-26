@@ -46,7 +46,7 @@ kernel =  cv2.getStructuringElement(
 
 #==================YOLO CONTROL======================
 
-yolo_cooldown = 0.5 #seconds
+yolo_cooldown = 0.2 #seconds
 last_yolo = 0
 
 print("YOLO is LIVE now")
