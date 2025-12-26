@@ -130,7 +130,7 @@ for i in indexes.flatten():
     cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,0),2)
     cv2.putText(
         image,
-        f"{class_label}{confidence.2f}",
+        f"{class_label}{confidence:.2f}",
         (x,y-5),
         cv2.FONT_HERSHEY_SIMPLEX,
         0.5,
