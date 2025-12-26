@@ -113,7 +113,7 @@ while True:
             motion_detection_status = True
             break
     #===========CONDITIONAL YOLO==============
-    if motion_detection_status & (current_time-last_yolo>yolo_cooldown):
+    if motion_detection_status and (current_time-last_yolo>yolo_cooldown):
         blob = cv2.dnn.blobFromImage(
             frame,
             scalefactor = 1/255.0,
@@ -170,7 +170,7 @@ while True:
         pre_class_confidence_list = []
 
         if len(indexes) > 0:
-            for i in indexes.flatten():
+            for i in np.array(indexes).flatten():
                 pre_boxes.append(boxes[i])
                 pre_class_id_list.append(class_id_list[i])
                 pre_class_confidence_list.append(class_confidence_list[i])
@@ -180,7 +180,7 @@ while True:
 
         #======================YOLO GEOMERTRY INDICATORS========================
         
-        for i in indexes.flatten():
+        for i in range(len(pre_boxes)):
             x,y,w,h = pre_boxes[i]
             class_label = classes[pre_class_id_list[i]]
             confidence = pre_class_confidence_list[i]
@@ -200,4 +200,4 @@ while True:
             break
 
 cap.release()
-cv2.detroyAllWinodows()
+cv2.detroyAllWindows()
