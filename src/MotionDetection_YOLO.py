@@ -22,8 +22,8 @@ print(classes)
 ouput_layers = net.getUnconnectedOutLayersNames()
 
 cap = cv2.VideoCapture(0,cv2.CAP_V4L2)  
-cap.set(cv2.CAP_PROP_FRAME_WIDTH,640)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH,1280)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT,720)
 time.sleep(0.5)
 #smaller resolution so less computation
 
