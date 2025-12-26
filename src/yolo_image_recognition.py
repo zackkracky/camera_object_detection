@@ -93,11 +93,11 @@ for output in output_by_layer:
         class_confidence = scores[class_id_index]
 
         if class_confidence > 0.5:
-            centre_x = int(detection(0)*width)
-            centre_y = int(detection(1)*height)
+            centre_x = int(detection[0]*width)
+            centre_y = int(detection[1]*height)
 
-            det_width = int(detection(2)*width)
-            det_height = int(detection(3)*height)
+            det_width = int(detection[2]*width)
+            det_height = int(detection[3]*height)
             
             #for bottom left point:
             BL_x = int(centre_x - det_width/2)
