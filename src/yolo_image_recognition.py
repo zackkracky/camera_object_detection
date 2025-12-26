@@ -21,4 +21,123 @@ net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 with open(coco_path,"r") as f:
     classes = [line.strip() for line in f.readlines()]
 
-print(classes)
+#print(classes)
+'''
+    this assigns the outmost layer of YOLO a variable
+    (the output ayer basically)
+    this is just the initial process of getting the output value
+    '''
+ouput_layers = net.getUnconnectedOutLayersNames()
+
+"""
+Consider this Note before proceeding
+   Common misunderstandings:
+
+❌ “Output layer = one object”
+❌ “YOLO has only one output”
+❌ “Each output = final result”
+
+Correct understanding:
+
+✅ Output layers = where raw detections come from
+✅ Results still need:
+
+confidence filtering
+
+class selection
+
+non-maximum suppression (NMS)
+"""
+
+image = cv2.imread(image_path)
+
+if image is None:
+    print("error in accessing image")
+    raise SystemExit
+
+
+#the format output of .shape is height,width,colour channel
+#here channel is 3 cause RGB.another way to see it is:
+#image[row][column][colour channel]
+height, width , _ = image.shape
+
+#Conversion of the image to Blob format:
+blob = cv2.dnn.blobFromImage(
+    image,
+    scalefactors = 1/255.0,
+    size = (416,416),
+    swapRB = True,
+    crops = False
+)
+
+#Runs the YOLO NN and returns the outpurs
+net.setInput(blob)
+output_by_layer= net.forward(ouput_layers)
+
+#Extracting boxes
+boxes = []
+class_confidence_list = []
+class_id_list = []
+
+for output in output_by_layer:
+    for detection in output:
+        '''
+            a single output looks likes:
+            [d0,d1,d2,d3,d4,d5,....]
+            each detection having
+            [x,y,w,h,confidence,clas probabilites....]
+        '''
+        scores = detection[5:]#we only consider the class probabilities
+        class_id_index = scores.argmax()
+        #basically .argmax() gives the index output of the maximum value in the list
+        class_confidence = scores[class_id_index]
+
+        if class_confidence > 0.5:
+            centre_x = int(detection(0)*width)
+            centre_y = int(detection(1)*height)
+
+            det_width = int(detection(2)*width)
+            det_height = int(detection(3)*height)
+            
+            #for bottom left point:
+            BL_x = int(centre_x - det_width/2)
+            BL_y = int(centre_y - det_height/2)
+
+            boxes.append[BL_x,BL_y,det_width,det_height]
+            confidence.append(float(class_confidence))
+            class_id_list.append(class_id_index)
+
+#NMS filtering
+#NMS to prevent duplicate box detection
+indexes = cv2.dnn.NMSBoxes(
+    boxes,
+    class_confidence_list,
+    score_threshold = 0.5,
+    nms_threshold = 0.4
+)
+#the NMS returns the index values of the filtered boxes in a list
+
+for i in indexes.flatten():
+    #flatten turns multidimentional arrays into 1D
+
+    '''
+        Now we define the filtered boxes
+    '''
+    x,y,w,h = boxes[i]
+    class_label = classes[class_id_list[i]]
+    confidence = class_confidence_list[i]
+
+    cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,0),2)
+    cv2.putText(
+        image,
+        f"{class_label}{confidence.2f}",
+        (x,y-5),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.5,
+        (0,255,0),
+        2
+    )
+
+cv2.imshow("YOLO Detection",image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
