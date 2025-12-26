@@ -19,6 +19,6 @@ net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 #loading class labels
 
 with open(coco_path,"r") as f:
-    classes = [lines.strip() for line in f.readlines()]
+    classes = [line.strip() for line in f.readlines()]
 
 print(classes)
