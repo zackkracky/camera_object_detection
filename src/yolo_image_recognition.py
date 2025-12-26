@@ -104,7 +104,7 @@ for output in output_by_layer:
             BL_y = int(centre_y - det_height/2)
 
             boxes.append([BL_x,BL_y,det_width,det_height])
-            confidence.append(float(class_confidence))
+            class_confidence_list.append(float(class_confidence))
             class_id_list.append(class_id_index)
 
 #NMS filtering
