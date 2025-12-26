@@ -15,7 +15,7 @@ image_path = os.path.join(BASE_DIR,"images/minnu.jpg")
 net = cv2.dnn.readNetFromDarknet(cfg_path,weights_path)
 #COMPUTATION parameters
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
-net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
+net.setPreferableTarget(cv2.dnn.DNN_TARGET_GPU)
 
 with open(coco_path,"r") as f:
     classes = [line.strip() for line in f.readlines()]
