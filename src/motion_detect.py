@@ -83,7 +83,7 @@ else:
         )
 
         #minimum area of pixels for it to be considered as an object
-        Minimum_area = 1000
+        Minimum_area = 500
 
         for c  in contour:
             area = cv2.contourArea(c)
