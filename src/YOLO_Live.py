@@ -19,7 +19,7 @@ net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
 with open(coco_path,"r") as f:
     classes = [line.strip() for line in f.readlines()]
-
+print(classes)
 ouput_layers = net.getUnconnectedOutLayersNames()
 
 
