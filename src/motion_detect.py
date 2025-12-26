@@ -16,7 +16,7 @@ else:
     #Background Subtractor config:
     backsub = cv2.createBackgroundSubtractorMOG2(
 
-        history = 200,
+        history = 500,
         varThreshold = 25,
         detectShadows = True
 
@@ -83,7 +83,7 @@ else:
         )
 
         #minimum area of pixels for it to be considered as an object
-        Minimum_area = 800
+        Minimum_area = 1000
 
         for c  in contour:
             area = cv2.contourArea(c)
