@@ -67,7 +67,7 @@ blob = cv2.dnn.blobFromImage(
     scalefactor = 1/255.0,
     size = (416,416),
     swapRB = True,
-    crops = False
+    crop = False
 )
 
 #Runs the YOLO NN and returns the outpurs
