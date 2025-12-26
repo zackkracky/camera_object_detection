@@ -64,7 +64,7 @@ height, width , _ = image.shape
 #Conversion of the image to Blob format:
 blob = cv2.dnn.blobFromImage(
     image,
-    scalefactors = 1/255.0,
+    scalefactor = 1/255.0,
     size = (416,416),
     swapRB = True,
     crops = False
