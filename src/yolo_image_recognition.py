@@ -13,8 +13,8 @@ image_path = os.path.join(BASE_DIR,"images/minnu.jpg")
 #loading YOLO onto memory
 net = cv2.dnn.readNetFromDarknet(cfg_path,weights_path)
 #COMPUTATION parameters
-net.setPreferrableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
-net.setPreferrableTarget(cv2.dnn.DNN_TARGER_CPU)
+net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
+net.setPreferableTarget(cv2.dnn.DNN_TARGER_CPU)
 
 #loading class labels
 
